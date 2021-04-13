@@ -101,7 +101,7 @@ function init() {
 		peerConnection.onaddstream = function(event) {
 			const videoWrap = document.createElement("div");
 			videoWrap.className = "video";
-			const remoteMedia = document.createElement("video");
+			const remoteMedia = document.createElement("audio");
 			videoWrap.appendChild(remoteMedia);
 			remoteMedia.setAttribute("playsinline", true);
 			remoteMedia.mediaGroup = "remotevideo";
@@ -250,7 +250,7 @@ function setup_local_media(callback, errorback) {
 			document.getElementById("buttons").style.opacity = "1";
 			document.getElementById("message").style.opacity = "1";
 
-			const localMedia = document.createElement("video");
+			const localMedia = document.createElement("audio");
 			videoWrap.appendChild(localMedia);
 			localMedia.setAttribute("id", "myVideo");
 			localMedia.setAttribute("playsinline", true);
