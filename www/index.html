@@ -34,14 +34,20 @@
 	</head>
 
 	<body onload="init()">
-		<div id="allowaccess">Please allow camera & microphone access to use this app.</div>
+		<div id="allowaccess">
+		<div id="logo" style="margin:auto;">
+			<img src="https://image.flaticon.com/icons/svg/3884/3884490.svg" style="height: 137px;margin-left: -33px;">
+		</div>
+
+		Please allow microphone access to use this app.
+	</div>
 		<div id="message">
 			Share the URL of this page with your friends to start talking.
 			<a href="about.html" target="_blank">About Talk</a>.
 		</div>
 		<div id="buttons">
-			<button id="mutebtn" class="fas fa-microphone"></button>
-			<button id="videomutebtn" class="fas fa-video"></button>
+			<button id="mutebtn" class="fas fa-microphone" style="color: #30ce5a;"></button>
+			<button id="videomutebtn" class="fas fa-video" style="color: #30ce5a;"></button>
 			<button id="swapcamerabtn" class="fas fa-sync-alt"></button>
 			<button id="screensharebtn" class="fas fa-desktop"></button>
 		</div>
