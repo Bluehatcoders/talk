@@ -52,8 +52,7 @@ video:fullscreen {
 	-webkit-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
 }
-.fa-microphone-slash,
-.fa-video-slash {
+.-slash {
 	color: #e74c3c !important;
 }
 
