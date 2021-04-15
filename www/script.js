@@ -220,12 +220,12 @@ function setup_local_media(callback, errorback) {
 
 			document.getElementById("mutebtn").addEventListener("click", (e) => {
 				localMediaStream.getAudioTracks()[0].enabled = !localMediaStream.getAudioTracks()[0].enabled;
-				e.target.className = "fas fa-microphone" + (localMediaStream.getAudioTracks()[0].enabled ? "" : "-slash");
+				e.target.className = "fas fa-microphone" + (localMediaStream.getAudioTracks()[0].enabled ? "" : " -slash");
 			});
 
 			document.getElementById("videomutebtn").addEventListener("click", (e) => {
 				localMediaStream.getVideoTracks()[0].enabled = !localMediaStream.getVideoTracks()[0].enabled;
-				e.target.className = "fas fa-video" + (localMediaStream.getVideoTracks()[0].enabled ? "" : "-slash");
+				e.target.className = "fas fa-video" + (localMediaStream.getVideoTracks()[0].enabled ? "" : " -slash");
 			});
 
 			navigator.mediaDevices.enumerateDevices().then((devices) => {
