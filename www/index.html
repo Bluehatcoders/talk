@@ -14,14 +14,12 @@
 	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="script.js"></script>
-	<title>Talk - A free video call app for the web</title>
+	<title>Talk - A free call app for the web</title>
 </head>
 
 <body onload="init()">
 	<div id="message">
 		Share the URL of this page with your friends to start talking.<br />
-		<a href="http://github.com/vasanthv/talk" target="_blank">Source code</a> &middot;
-		<a href="/legal" target="_blank">Legal</a>
 	</div>
 	<div id="allowaccess">
 		<div id="logo" style="margin:auto;">
@@ -34,13 +32,10 @@
 			</svg>
 		</div>
 
-		Please allow camera & microphone access to use this app.
+		Please allow microphone access to use this app.
 	</div>
 	<div id="buttons">
 		<button id="mutebtn" class="fas fa-microphone"></button>
-		<button id="videomutebtn" class="fas fa-video"></button>
-		<button id="swapcamerabtn" class="fas fa-sync-alt"></button>
-		<button id="screensharebtn" class="fas fa-desktop"></button>
 	</div>
 </body>
 
