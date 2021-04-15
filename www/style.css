@@ -15,7 +15,7 @@ video {
 	width: 100%;
 	height: auto;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 }
 video:fullscreen {
 	object-fit: contain;
@@ -78,6 +78,18 @@ video:fullscreen {
 #allowaccess {
 	text-align: center;
 	opacity: 1;
+}
+#message a {
+	color: inherit;
+	font-style: normal;
+}
+
+#logo {
+	width: 48px;
+	margin-right: 0.5rem;
+}
+#logo svg {
+	width: 100%;
 }
 
 #buttons {
