@@ -14,29 +14,13 @@
 	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="script.js"></script>
-	<style>
-		#buttons {
-    background: rgba(255, 255, 255, 0.8);
-    opacity: 0;
-    position: fixed;
-    bottom: 1rem;
-    left: 0px;
-    right: 0px;
-    z-index: 100;
-    width: 0rem;
-    margin: auto;
-    padding: 1rem 2rem;
-    box-sizing: border-box;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: space-between;
-    transition: opacity 250ms;
-}
-	</style>
-	<title>Talk - A free audio call app for the web</title>
+	<title>Talk - A free call app for the web</title>
 </head>
 
 <body onload="init()">
+	<div id="message">
+		Share the URL of this page with your friends to start talking.<br />
+	</div>
 	<div id="allowaccess">
 		<div id="logo" style="margin:auto;">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -52,6 +36,9 @@
 	</div>
 	<div id="buttons">
 		<button id="mutebtn" class="fas fa-microphone"></button>
+		<button id="videomutebtn" class="fas fa-video" style="display:none"></button>
+		<button id="swapcamerabtn" class="fas fa-sync-alt" style="display:none"></button>
+		<button id="screensharebtn" class="fas fa-desktop" style="display:none"></button>
 	</div>
 </body>
 
