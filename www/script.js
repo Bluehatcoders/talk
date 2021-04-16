@@ -17,7 +17,7 @@ const getRoomName = () => {
 };
 var SIGNALING_SERVER = appURL();
 var USE_AUDIO = true;
-var USE_VIDEO = true;
+var USE_VIDEO = false;
 var CAMERA = "user";
 //var USE_VIDEO = { facingMode: "environment" }; // use this for back facing camera.
 var IS_SCREEN_STREAMING = false;
@@ -210,7 +210,7 @@ function setup_local_media(callback, errorback) {
 		element.srcObject = stream;
 	};
 	navigator.mediaDevices
-		.getUserMedia({ audio: USE_AUDIO, video: USE_VIDEO })
+		.getUserMedia({ audio: USE_AUDIO })
 		.then((stream) => {
 			document.getElementById("allowaccess").style.display = "none";
 			localMediaStream = stream;
@@ -223,10 +223,6 @@ function setup_local_media(callback, errorback) {
 				e.target.className = "fas fa-microphone" + (localMediaStream.getAudioTracks()[0].enabled ? "" : " -slash");
 			});
 
-			document.getElementById("videomutebtn").addEventListener("click", (e) => {
-				localMediaStream.getVideoTracks()[0].enabled = !localMediaStream.getVideoTracks()[0].enabled;
-				e.target.className = "fas fa-video" + (localMediaStream.getVideoTracks()[0].enabled ? "" : " -slash");
-			});
 
 			navigator.mediaDevices.enumerateDevices().then((devices) => {
 				const videoInput = devices.filter((device) => device.kind === "videoinput");
