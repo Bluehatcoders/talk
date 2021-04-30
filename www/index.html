@@ -68,17 +68,15 @@
 </head>
 
 <body onload="init()" data-new-gr-c-s-check-loaded="14.984.0" data-gr-ext-installed="">
-	<div id="message" style="display:none">
-		Share the URL of this page with your friends to start talking.<br>
+	<div id="message">
+		Share the URL of this page with your friends to start talking.<br />
 	</div>
 	
-	<div id="buttons" style="
-    display: none;
-">
-		<button id="mutebtn" class="fas fa-microphone" style="display:none" aria-hidden="true"></button>
-		<button id="videomutebtn" class="fas fa-video" style="display:none" aria-hidden="true"></button>
-		<button id="swapcamerabtn" class="fas fa-sync-alt" style="display:none" aria-hidden="true"></button>
-		<button id="screensharebtn" class="fas fa-desktop" style="display:none" aria-hidden="true"></button>
+	<div id="buttons">
+		<button id="mutebtn" class="fas fa-microphone"></button>
+		<button id="videomutebtn" class="fas fa-video" style="display:none"></button>
+		<button id="swapcamerabtn" class="fas fa-sync-alt" style="display:none"></button>
+		<button id="screensharebtn" class="fas fa-desktop" style="display:none"></button>
 	</div>
 	
 <div class="col-xl-4 box-col-6">
@@ -172,9 +170,6 @@
 //  I'll clean this once I'm completely done with the poc :)
 
 // Handle browser prefixes
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-
 // Setup test data
 var fills = [
     'rgba(255, 255, 255, 1)',
