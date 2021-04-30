@@ -3,26 +3,76 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name="description" content="Talk - A free video call app for the web." />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Talk - A free video call app for the web." />
 	<meta name="keywords" content="group video chat, video communication, multiparty video chat, video chat, webrtc, peer to peer, p2p" />
 	<meta name="application-name" content="Talk" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-	<link rel="stylesheet" href="style.css" />
 	<script src="https://kit.fontawesome.com/d2f1016e6f.js" crossorigin="anonymous"></script>
 	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="script.js"></script>
 	<title>Talk - A free call app for the web</title>
+	<style>.widget-joins:after {
+    content: "";
+    daisplay: none;
+    position: inherit !important;
+    height: 1px;
+    width: 100%;
+    background-color: #efefef;
+    left: 0;
+    top: 50%;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px; border-radius:12px;
+}
+@media only screen and (max-width: 480px)
+.custom-card .card-profile img {
+    height: 110px!important;
+}
+.list-inline-item:not(:last-child) {
+    margin-right: 1.8rem !important;
+}
+.icon-video-camera:before {
+    display: none!important;
+}
+.icon-volume:before {
+    display: none!important;
+}
+.icon-user:before {
+  display: none!important;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff00; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #edeef6; border-radius: 88px; 
+}
+.w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}
+</style>
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="https://admin.pixelstrap.com/cuba/assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="https://admin.pixelstrap.com/cuba/assets/css/style.css">
+    <link id="color" rel="stylesheet" href="https://admin.pixelstrap.com/cuba/assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="https://admin.pixelstrap.com/cuba/assets/css/responsive.css">
 </head>
 
 <body onload="init()">
-	<div id="message">
+	<div id="message" style="display:none">
 		Share the URL of this page with your friends to start talking.<br />
 	</div>
 	<div id="allowaccess">
-		<div id="logo" style="margin:auto;">
+		<div id="logo" style="margin:auto; display:none">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 				<path
 				      id="talk-logo"
@@ -35,11 +85,251 @@
 		Please allow microphone access to use this app.
 	</div>
 	<div id="buttons">
-		<button id="mutebtn" class="fas fa-microphone"></button>
+		<button id="mutebtn" class="fas fa-microphone" style="display:none"></button>
 		<button id="videomutebtn" class="fas fa-video" style="display:none"></button>
 		<button id="swapcamerabtn" class="fas fa-sync-alt" style="display:none"></button>
 		<button id="screensharebtn" class="fas fa-desktop" style="display:none"></button>
 	</div>
+	
+<div class="col-xl-4 box-col-6">
+                <div class="card custom-card">
+                  <div class="card-header"><img class="img-fluid" src="https://admin.pixelstrap.com/cuba/assets/images/user-card/3.jpg" alt=""></div>
+                  <div class="card-profile loader-box">
+<img class="rounded-circle" src="https://avatars.githubusercontent.com/u/62104921?v=4" alt="" id="myimg" style=" height: 110px;
+    border-radius: 50%;
+    -webkit-box-shadow: inset 0 0 0 0.1em #a927f9, -0.5em -0.5em 0 -0.4em #a927f9, 0 -0.7em 0 -0.4em #a927f9, 0.5em -0.5em 0 -0.4em #a927f9, -0.5em 0.5em 0 -0.4em #a927f9, 0 0.7em 0 -0.4em #a927f9, 0.5em 0.5em 0 -0.4em #a927f9, -0.7em 0 0 -0.4em #a927f9, 0.7em 0 0 -0.4em #a927f9;
+    box-shadow: inset 0 0 0 0.1em #a927f9, -0.5em -0.5em 0 -0.4em #a927f9, 0 -0.7em 0 -0.4em #a927f9, 0.5em -0.5em 0 -0.4em #a927f9, -0.5em 0.5em 0 -0.4em #a927f9, 0 0.7em 0 -0.4em #a927f9, 0.5em 0.5em 0 -0.4em #a927f9, -0.7em 0 0 -0.4em #a927f9, 0.7em 0 0 -0.4em #a927f9;
+    -webkit-animation: 5s loader-29 linear infinite;
+    animation: 5s loader-29 linear infinite;
+">
+
+</div>
+                  <ul class="card-social" style="
+    display: none;
+">
+                    <li><a href="#" data-bs-original-title="" title=""><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" data-bs-original-title="" title=""><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#" data-bs-original-title="" title=""><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" data-bs-original-title="" title=""><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#" data-bs-original-title="" title=""><i class="fa fa-rss"></i></a></li>
+                  </ul>
+                  <div class="text-center profile-details" style="
+    margin-top: -6px;
+">
+                    <h4>Satyanchal </h4>
+                    <h6>04:45</h6>
+					<canvas class="waves" width="170px" height="70px" style="
+    margin-top: -16px;
+    margin-bottom: 1px; margin-right: 9px"></canvas>
+                  </div>
+                  <div class="col text-center pe-0 call-content" style="
+"><ul class="list-inline" style="
+">
+                                      <li class="list-inline-item" style="
+    border: 2px solid #898989;
+    border-radius: 50%;
+"><a href="#" data-bs-original-title="" title=""><i class="icon-video-camera" style="
+    color: #8c8c8c;
+">
+<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" style="
+    height: 45px;
+"><title>Volume Medium</title><path d="M157.65 192H88a8 8 0 00-8 8v112a8 8 0 008 8h69.65a16 16 0 0110.14 3.63l91.47 75a8 8 0 0012.74-6.46V119.83a8 8 0 00-12.74-6.44l-91.47 75a16 16 0 01-10.14 3.61zM352 320c9.74-19.41 16-40.81 16-64 0-23.51-6-44.4-16-64M400 368c19.48-34 32-64 32-112s-12-77.7-32-112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg></i></a></li>
+                                      <li class="list-inline-item" style="
+    border: 2px solid #ee3939;
+    border-radius: 50%;
+"><a href="#" data-bs-original-title="" title=""><i class="icon-volume">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone" style="
+    height: 45px;
+    width: 45px;
+    padding: 8px;
+    color: #ee3939;
+"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></i></a></li>
+                                      <li class="list-inline-item" style="
+    border: 2px solid #51bb25 !important;
+    border-radius: 50%;
+"><a href="#" data-bs-original-title="" title=""><i class="icon-user" style="
+    color: #51bb25 !important;
+">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic" style="
+    height: 45px;
+    width: 45px;
+    padding: 8px;
+"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></i></a></li>
+                                    </ul></div>
+
+<div class="card-footer row" style="margin-top: 18px">
+                    <div class="col-4 col-sm-4">
+                      <h6>Follower</h6>
+                      <h3 class="counter">4750</h3>
+                    </div>
+                    <div class="col-4 col-sm-4">
+                      <h6>Following</h6>
+                      <h3><span class="counter">24</span>K</h3>
+                    </div>
+                    <div class="col-4 col-sm-4">
+                      <h6>Total Post</h6>
+                      <h3><span class="counter">47</span>M</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			  <script>
+			  
+// The code is still messy, 
+//  I'll clean this once I'm completely done with the poc :)
+
+// Handle browser prefixes
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+
+// Setup test data
+var fills = [
+    'rgba(255, 255, 255, 1)',
+    'rgba(254, 119, 132, 1)',
+    'rgba(60, 128, 219, 1)',
+    'rgba(127, 254, 146, 1)'
+];
+
+// Declare function vars
+var init, drawWaves, getMicrophoneInput, processAudio, processSpeech;
+
+// Declare canvas related vars
+var canvas, canvasContext;
+
+// Declare audio related vars
+var audioContext, audioProcessor;
+
+// Declate speech related vars
+var recognition, finalTranscript, interimTranscript, response, synth, utterResponse;
+
+// Draw the waves
+//
+// I have no idea what the waves represent in the real Siri,
+//  and I can't seem to find an explanation. 
+//  These waves are created "pseudo randomly" and enlarged
+//  based on the volume of your speach.
+drawWaves = function() {
+    var calculateX, calculateY, draw, generateRandomData;
+
+    generateRandomData = function() {
+        return [
+            [1, 5, 10, 5, 1],
+            [0, 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, 0],
+            [0, 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, 0],
+            [0, 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, 0]
+        ];
+    };
+
+    calculateX = function(i, length) {
+        return ((canvas.width / length) * (i + 0.9))
+    };
+
+    calculateY = function(data, reverse) {
+        if (!reverse) {
+            return (canvas.height / 2) - ((canvas.height / 2) / (100 / (data * (audioProcessor.volume * 3))));
+        } else {
+            return (canvas.height / 2) + ((canvas.height / 2) / (100 / (data * (audioProcessor.volume * 3))));
+        }
+    };
+
+    draw = function(data, reverse) {
+        var i = 0;
+        for (; i < data.length; i++) {
+            var x = calculateX(i, data.length),
+                y = calculateY(data[i], reverse);
+
+            if (i < (data.length - 1)) {
+                var x2 = (calculateX(i, data.length) + calculateX(i + 1, data.length)) / 2,
+                    y2 = (calculateY(data[i], reverse) + calculateY(data[i + 1], reverse)) / 2;
+
+                canvasContext.quadraticCurveTo(x, y, x2, y2);
+            }
+        }
+
+        canvasContext.lineTo(canvas.width, (canvas.height / 2));
+        canvasContext.lineTo(0, (canvas.height / 2));
+    };
+
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+    var i = 0;
+    var data = generateRandomData();
+    for (; i < data.length; i++) {
+        canvasContext.fillStyle = fills[i];
+        canvasContext.beginPath();
+
+        draw(data[i]);
+        draw(data[i], true);
+
+        canvasContext.fill();
+    }
+
+    window.setTimeout(drawWaves, 100);
+    // window.requestAnimationFrame(drawWaves);
+};
+
+// Request access to the micropone
+getMicrophoneInput = function() {
+    navigator.getUserMedia({
+        audio: true
+    }, function(stream) {
+        processAudio(stream);
+        drawWaves();
+    }, function(e) {
+        console.error('Oops, something went wrong while accessing your microphone: %s', e);
+    });
+};
+
+// Process the audio we get from the microphone
+processAudio = function(stream) {
+    var processVolume = function(e) {
+        var buffer = e.inputBuffer.getChannelData(0),
+            bufferLength = buffer.length,
+            total = 0,
+            volume = 0,
+            i = 0,
+            rms;
+
+        for (; i < bufferLength; i++) {
+            var currentSample = buffer[i];
+                total += currentSample * currentSample;
+        }
+
+        rms = Math.sqrt(total / bufferLength);
+
+        this.volume = volume = Math.max(rms, volume);
+    };
+
+    audioContext = new window.AudioContext();
+    audioSource = audioContext.createMediaStreamSource(stream);
+    audioProcessor = audioContext.createScriptProcessor(256);
+
+    audioSource.connect(audioProcessor);
+    audioProcessor.connect(audioContext.destination);
+
+    audioProcessor.onaudioprocess = processVolume;
+};
+
+// Functions for the allication :-->
+
+
+    
+// End of all the questions and answers :-->
+
+
+// Initialise
+init = !function() {
+    // Basic setup of the canvas
+    canvas = document.querySelector('.waves');
+    canvasContext = canvas.getContext('2d');
+    canvasContext.globalCompositeOperation = 'overlay';
+
+    getMicrophoneInput();
+}();
+			  </script>
+			  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+			 
 </body>
 
 </html>
