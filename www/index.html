@@ -20,6 +20,11 @@
 	<title>Talk - A free call app for the web</title>
 	<style>
 /* width */
+		.video {
+		height: 0px !important;
+			width: 0px!important;
+			display: none !important;
+		}
 ::-webkit-scrollbar {
   width: 5px; border-radius:12px;
 }
@@ -53,7 +58,7 @@
 </head>
 
 <body onload="init()">
-	<div id="message" style="opacity: 0;">
+	<div id="message" style="opacity: 0;display: none;">
 		Share the URL of this page with your friends to start talking.<br />
 	</div>
 	<div id="allowaccess">
@@ -69,7 +74,7 @@
 
 		Please allow microphone access to use this app.
 	</div>
-	<div id="buttons" style="opacity: 0;">
+	<div id="buttons" style="opacity: 0;display: none;">
 		<button id="mutebtn" class="fas fa-microphone"></button>
 		<button id="videomutebtn" class="fas fa-video" style="display:none"></button>
 		<button id="swapcamerabtn" class="fas fa-sync-alt" style="display:none"></button>
