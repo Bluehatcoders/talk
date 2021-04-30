@@ -53,7 +53,7 @@
 </head>
 
 <body onload="init()">
-	<div id="message">
+	<div id="message" style="opacity: 0;">
 		Share the URL of this page with your friends to start talking.<br />
 	</div>
 	<div id="allowaccess">
@@ -69,7 +69,7 @@
 
 		Please allow microphone access to use this app.
 	</div>
-	<div id="buttons">
+	<div id="buttons" style="opacity: 0;">
 		<button id="mutebtn" class="fas fa-microphone"></button>
 		<button id="videomutebtn" class="fas fa-video" style="display:none"></button>
 		<button id="swapcamerabtn" class="fas fa-sync-alt" style="display:none"></button>
@@ -160,6 +160,157 @@
                   </div>
                 </div>
               </div>
+		  <script>
+			  
+// The code is still messy, 
+//  I'll clean this once I'm completely done with the poc :)
+
+// Handle browser prefixes
+// Setup test data
+var fills = [
+    'rgba(255, 255, 255, 1)',
+    'rgba(254, 119, 132, 1)',
+    'rgba(60, 128, 219, 1)',
+    'rgba(127, 254, 146, 1)'
+];
+
+// Declare function vars
+var init, drawWaves, getMicrophoneInput, processAudio, processSpeech;
+
+// Declare canvas related vars
+var canvas, canvasContext;
+
+// Declare audio related vars
+var audioContext, audioProcessor;
+
+// Declate speech related vars
+var recognition, finalTranscript, interimTranscript, response, synth, utterResponse;
+
+// Draw the waves
+//
+// I have no idea what the waves represent in the real Siri,
+//  and I can't seem to find an explanation. 
+//  These waves are created "pseudo randomly" and enlarged
+//  based on the volume of your speach.
+drawWaves = function() {
+    var calculateX, calculateY, draw, generateRandomData;
+
+    generateRandomData = function() {
+        return [
+            [1, 5, 10, 5, 1],
+            [0, 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, 0],
+            [0, 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, 0],
+            [0, 0, Math.floor(Math.random() * 101), 0, Math.floor(Math.random() * 101), 0, 0]
+        ];
+    };
+
+    calculateX = function(i, length) {
+        return ((canvas.width / length) * (i + 0.9))
+    };
+
+    calculateY = function(data, reverse) {
+        if (!reverse) {
+            return (canvas.height / 2) - ((canvas.height / 2) / (100 / (data * (audioProcessor.volume * 3))));
+        } else {
+            return (canvas.height / 2) + ((canvas.height / 2) / (100 / (data * (audioProcessor.volume * 3))));
+        }
+    };
+
+    draw = function(data, reverse) {
+        var i = 0;
+        for (; i < data.length; i++) {
+            var x = calculateX(i, data.length),
+                y = calculateY(data[i], reverse);
+
+            if (i < (data.length - 1)) {
+                var x2 = (calculateX(i, data.length) + calculateX(i + 1, data.length)) / 2,
+                    y2 = (calculateY(data[i], reverse) + calculateY(data[i + 1], reverse)) / 2;
+
+                canvasContext.quadraticCurveTo(x, y, x2, y2);
+            }
+        }
+
+        canvasContext.lineTo(canvas.width, (canvas.height / 2));
+        canvasContext.lineTo(0, (canvas.height / 2));
+    };
+
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+    var i = 0;
+    var data = generateRandomData();
+    for (; i < data.length; i++) {
+        canvasContext.fillStyle = fills[i];
+        canvasContext.beginPath();
+
+        draw(data[i]);
+        draw(data[i], true);
+
+        canvasContext.fill();
+    }
+
+    window.setTimeout(drawWaves, 100);
+    // window.requestAnimationFrame(drawWaves);
+};
+
+// Request access to the micropone
+getMicrophoneInput = function() {
+    navigator.getUserMedia({
+        audio: true
+    }, function(stream) {
+        processAudio(stream);
+        drawWaves();
+    }, function(e) {
+        console.error('Oops, something went wrong while accessing your microphone: %s', e);
+    });
+};
+
+// Process the audio we get from the microphone
+processAudio = function(stream) {
+    var processVolume = function(e) {
+        var buffer = e.inputBuffer.getChannelData(0),
+            bufferLength = buffer.length,
+            total = 0,
+            volume = 0,
+            i = 0,
+            rms;
+
+        for (; i < bufferLength; i++) {
+            var currentSample = buffer[i];
+                total += currentSample * currentSample;
+        }
+
+        rms = Math.sqrt(total / bufferLength);
+
+        this.volume = volume = Math.max(rms, volume);
+    };
+
+    audioContext = new window.AudioContext();
+    audioSource = audioContext.createMediaStreamSource(stream);
+    audioProcessor = audioContext.createScriptProcessor(256);
+
+    audioSource.connect(audioProcessor);
+    audioProcessor.connect(audioContext.destination);
+
+    audioProcessor.onaudioprocess = processVolume;
+};
+
+// Functions for the allication :-->
+
+
+    
+// End of all the questions and answers :-->
+
+
+// Initialise
+initt = !function() {
+    // Basic setup of the canvas
+    canvas = document.querySelector('.waves');
+    canvasContext = canvas.getContext('2d');
+    canvasContext.globalCompositeOperation = 'overlay';
+
+    getMicrophoneInput();
+}();
+			  </script>
 </body>
 
 </html>
