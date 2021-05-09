@@ -15,6 +15,20 @@ const getRoomName = () => {
 	}
 	return roomName;
 };
+
+function updateaadmi(){
+var logo = document.getElementsByTagName("audio").length - 1;
+if (logo == 0){
+document.getElementById("logkitnehai").innerHTML = "is going on";
+}
+if (logo == 1){
+document.getElementById("logkitnehai").innerHTML = `is going on with 1 other`;
+} 
+if (logo > 1){
+document.getElementById("logkitnehai").innerHTML = `is going on with ${logo} other`;
+}
+};
+
 var SIGNALING_SERVER = appURL();
 var USE_AUDIO = true;
 var USE_VIDEO = false;
@@ -66,6 +80,7 @@ function init() {
 		for (peer_id in peerMediaElements) {
 			document.body.removeChild(peerMediaElements[peer_id].parentNode);
 			resizeVideos();
+			updateaadmi();
 		}
 		for (peer_id in peers) {
 			peers[peer_id].close();
@@ -110,7 +125,7 @@ function init() {
 			peerMediaElements[peer_id] = remoteMedia;
 			document.body.appendChild(videoWrap);
 			document.getElementById("message").style.display = "none";
-
+                        updateaadmi();
 			attachMediaStream(remoteMedia, event.stream);
 			resizeVideos();
 		};
@@ -190,6 +205,7 @@ function init() {
 		if (peer_id in peerMediaElements) {
 			document.body.removeChild(peerMediaElements[peer_id].parentNode);
 			resizeVideos();
+			updateaadmi();
 		}
 		if (peer_id in peers) {
 			peers[peer_id].close();
@@ -264,6 +280,7 @@ function setup_local_media(callback, errorback) {
 			document.body.appendChild(videoWrap);
 			attachMediaStream(localMedia, stream);
 			resizeVideos();
+		        updateaadmi();
 			if (callback) callback();
 		})
 		.catch(() => {
