@@ -18,7 +18,6 @@ const getRoomName = () => {
 
 function updateaadmi(){
 var logo = document.getElementsByTagName("audio").length - 1;
-document.getElementById("this").innerHTML +=`<li class="d-inline-block"><img class="img-60 rounded-circle" src="https://admin.pixelstrap.com/cuba/assets/images/user/5.jpg" alt=""></li>`;
 if (logo == 0){
 document.getElementById("logkitnehai").innerHTML = "is going on";
 }
@@ -133,6 +132,7 @@ function init() {
 			document.getElementById("message").style.display = "none";
                         updateaadmi();
 			console.log(peer_name);
+			document.getElementById("this").innerHTML +=`<li class="d-inline-block"><img class="img-60 rounded-circle" src="https://admin.pixelstrap.com/cuba/assets/images/user/5.jpg" alt=""></li>`;
 			attachMediaStream(remoteMedia, event.stream);
 			resizeVideos();
 		};
