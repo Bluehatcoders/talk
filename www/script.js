@@ -96,6 +96,7 @@ function init() {
 	signalingSocket.on("addPeer", function(config) {
 		var peer_id = config.peer_id;
 		var peer_name = config.peer_name;
+		query: { token: 'cde' }
 		if (peer_id in peers) return;
 		peerConnection = new RTCPeerConnection(
 			{ iceServers: ICE_SERVERS },
