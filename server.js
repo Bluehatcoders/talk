@@ -24,7 +24,6 @@ const sockets = {};
 
 io.sockets.on('connection', socket => {
 	const socketHostName = socket.handshake.headers.host.split(':')[0];
-        const nameofuser = socket.handshake.query.name;
 	socket.channels = {};
 	sockets[socket.id] = socket;
 
@@ -40,6 +39,7 @@ io.sockets.on('connection', socket => {
 	socket.on('join', config => {
 		console.log('[' + socket.id + '] join ', config);
 		const channel = socketHostName + config.channel;
+		const nameofuser = config.userdata;
 
 		// Already Joined
 		if (channel in socket.channels) return;
