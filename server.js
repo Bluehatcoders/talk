@@ -24,7 +24,7 @@ const sockets = {};
 
 io.sockets.on('connection', socket => {
 	const socketHostName = socket.handshake.headers.host.split(':')[0];
-        // const nameofuser = socket.handshake.query.name;
+        const nameofuser = socket.handshake.query.name;
 	socket.channels = {};
 	sockets[socket.id] = socket;
 
@@ -49,7 +49,7 @@ io.sockets.on('connection', socket => {
 		}
 
 		for (id in channels[channel]) {
-			const nameofuser = socket.handshake.query.token;
+			// const nameofuser = socket.handshake.query.token;
 			channels[channel][id].emit('addPeer', { peer_id: socket.id, peer_name: nameofuser, should_create_offer: false });
 			socket.emit('addPeer', { peer_id: id, peer_name: nameofuser, should_create_offer: true });
 		}
