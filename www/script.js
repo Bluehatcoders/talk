@@ -89,7 +89,9 @@ function init() {
 		peers = {};
 		peerMediaElements = {};
 	});
-
+        var url_string = window.location.href
+        var url = new URL(url_string);
+        var userdata = url.searchParams.get("name");
 	function joinChannel(channel, userdata) {
 		signalingSocket.emit("join", { channel: channel, userdata: userdata });
 	}
