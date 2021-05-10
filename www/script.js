@@ -20,6 +20,7 @@ function updateaadmi(){
 var logo = document.getElementsByTagName("audio").length - 1;
 if (logo == 0){
 document.getElementById("logkitnehai").innerHTML = "is going on";
+document.getElementById("yhi").className = "rounded-circle img-100";
 }
 if (logo == 1){
 document.getElementById("logkitnehai").innerHTML = `is going on with 1 other`;
@@ -99,6 +100,7 @@ function init() {
 	signalingSocket.on("addPeer", function(config) {
 		var peer_id = config.peer_id;
 		var peer_name = config.peer_name;
+		document.getElementById("yhi").className = "rounded-circle img-60";
 		query: { token: 'cde' }
 		if (peer_id in peers) return;
 		peerConnection = new RTCPeerConnection(
