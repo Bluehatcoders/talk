@@ -39,7 +39,7 @@ io.sockets.on('connection', socket => {
 	socket.on('join', config => {
 		console.log('[' + socket.id + '] join ', config);
 		const channel = socketHostName + config.channel;
-		const nameofuser = config.userdata;
+		
 
 		// Already Joined
 		if (channel in socket.channels) return;
@@ -50,8 +50,8 @@ io.sockets.on('connection', socket => {
 
 		for (id in channels[channel]) {
 			// const nameofuser = socket.handshake.query.token;
-			channels[channel][id].emit('addPeer', { peer_id: socket.id, peer_name: nameofuser, should_create_offer: false });
-			socket.emit('addPeer', { peer_id: id, peer_name: nameofuser, should_create_offer: true });
+			channels[channel][id].emit('addPeer', { peer_id: socket.id, peer_name: config.userdata, should_create_offer: false });
+			socket.emit('addPeer', { peer_id: id, peer_name: config.userdata, should_create_offer: true });
 		}
 
 		channels[channel][socket.id] = socket;
