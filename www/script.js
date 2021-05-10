@@ -95,6 +95,7 @@ function init() {
 	}
 	signalingSocket.on("addPeer", function(config) {
 		var peer_id = config.peer_id;
+		var peer_name = config.peer_name;
 		if (peer_id in peers) return;
 		peerConnection = new RTCPeerConnection(
 			{ iceServers: ICE_SERVERS },
@@ -126,6 +127,7 @@ function init() {
 			document.body.appendChild(videoWrap);
 			document.getElementById("message").style.display = "none";
                         updateaadmi();
+			console.log(peer_name);
 			attachMediaStream(remoteMedia, event.stream);
 			resizeVideos();
 		};
