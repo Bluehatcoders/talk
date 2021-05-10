@@ -49,7 +49,7 @@ io.sockets.on('connection', socket => {
 		}
 
 		for (id in channels[channel]) {
-			const nameofuser = socket.handshake.query.name;
+			const nameofuser = socket.handshake.query['name'];
 			channels[channel][id].emit('addPeer', { peer_id: socket.id, peer_name: nameofuser, should_create_offer: false });
 			socket.emit('addPeer', { peer_id: id, peer_name: nameofuser, should_create_offer: true });
 		}
