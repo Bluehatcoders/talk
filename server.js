@@ -15,7 +15,7 @@ server.listen(PORT, null, function() {
 });
 
 app.get('/legal', (req, res) => res.sendFile(path.join(__dirname, 'www/legal.html')));
-
+app.get('/create', (req, res) => res.sendFile(path.join(__dirname, 'www/create.html')));
 // All URL patterns should served with the same file.
 app.get(['/', '/:room'], (req, res) => res.sendFile(path.join(__dirname, 'www/index.html')));
 
