@@ -184,13 +184,10 @@
     height: 49px;
 									
     background: #e9e9e9;
-"><a href="#" data-bs-original-title="" title=""><i class="icon-video-camera" id="speakermutebtn" style="
+"><a href="#" data-bs-original-title="" title=""><i class="icon-video-camera" id="buttonshare" style="
     color: #8c8c8c;
 ">
-<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" style="
-    height: 45px;
-    padding: 4px;
-"><title>Volume Medium</title><path d="M157.65 192H88a8 8 0 00-8 8v112a8 8 0 008 8h69.65a16 16 0 0110.14 3.63l91.47 75a8 8 0 0012.74-6.46V119.83a8 8 0 00-12.74-6.44l-91.47 75a16 16 0 01-10.14 3.61zM352 320c9.74-19.41 16-40.81 16-64 0-23.51-6-44.4-16-64M400 368c19.48-34 32-64 32-112s-12-77.7-32-112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg></i></a></li>
+<svg xmlns="http://www.w3.org/2000/svg" style="height: 45px;padding: 7px;padding-left: 4px;" viewBox="0 0 24 24" width="45" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M13.12 17.023l-4.199-2.29a4 4 0 1 1 0-5.465l4.2-2.29a4 4 0 1 1 .959 1.755l-4.2 2.29a4.008 4.008 0 0 1 0 1.954l4.199 2.29a4 4 0 1 1-.959 1.755zM6 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm11-6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill="rgba(122,170,244,1)"></path></svg></i></a></li>
                                       <li class="list-inline-item" style="
     border: 2px solid #ee3939;
     border-radius: 50%;
@@ -207,6 +204,7 @@
     color: #ee3939;
     transform: rotate(135deg);
     fill: white;
+    margin-bottom: 8px !important;
 "><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></i></a></li>
                                       <li class="list-inline-item" style="
     border: 2px solid #e9e9e9 !important;
@@ -215,7 +213,7 @@
     background: #e9e9e9;
 "><a href="#" data-bs-original-title="" title=""><i class="icon-user" id="mutebtn" style="
     color: #51bb25 !important;
-					          font-size: inherit
+					          font-size: inherit;
     padding-top: 12px;
     padding-bottom: 16px;z-index: 453543;
 ">
@@ -242,6 +240,28 @@
                   </div>
                 </div>
               </div>
+	
+	 <script>
+		 var x = document.URL;
+      let shareData = {
+        title: 'Talk',
+        text: 'Free Audio Calling',
+        url: x,
+      }
+
+      const btn = document.getElementById('buttonshare');
+      const resultPara = document.querySelector('.result');
+
+      btn.addEventListener('click', () => {
+        navigator.share(shareData)
+          .then(() =>
+            console.log("done");
+          )
+          .catch((e) =>
+           console.log("done");
+          )
+      });
+    </script>
 		  <script>
 			  
 // The code is still messy, 
