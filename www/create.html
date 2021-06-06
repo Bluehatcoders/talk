@@ -27,10 +27,10 @@
                     <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11">
 
                         <!-- Heading -->
-                        <h1 class="font-bold text-center">Sign up</h1>
+                        <h1 class="font-bold text-center">Create Room</h1>
 
                         <!-- Text -->
-                        <p class="text-center mb-6">Welcome to the official Chat web-client.</p>
+                        <p class="text-center mb-6">Create free audio calling room and enjoy</p>
 
                         <!-- Form -->
                         <form class="mb-6">
@@ -44,22 +44,22 @@
                             <!-- Email -->
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email Address</label>
-                                <input type="email" class="form-control form-control-lg" id="email" placeholder="Enter your email">
+                                <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" class="form-control form-control-lg" id="email" placeholder="Create a room number">
                             </div>
 
                             <!-- Password -->
                             <div class="form-group">
                                 <label for="password" class="sr-only">Password</label>
-                                <input type="password" class="form-control form-control-lg" id="password" placeholder="Enter your password">
+                                <input type="password" class="form-control form-control-lg" id="password" placeholder="Create a password for room">
                             </div>
 
                             <!-- Submit -->
-                            <button class="btn btn-lg btn-block btn-primary" type="submit">Sign up</button>
+                            <button class="btn btn-lg btn-block btn-primary" type="submit">Create</button>
                         </form>
 
                         <!-- Text -->
                         <p class="text-center">
-                            Already have an account? <a href="./signin.html">Sign in</a>.
+                            Want to join a Room? <a href="./signin.html">Join Now</a>.
                         </p>
 
                     </div>
@@ -69,7 +69,16 @@
         </div><!-- .layout -->
 
         <!-- Scripts -->
-
+<script>
+	function onlyNumberKey(evt) {
+		
+		// Only ASCII character in that range allowed
+		var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+		if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+			return false;
+		return true;
+	}
+</script>
         <!-- Scripts -->
 
     </body>
